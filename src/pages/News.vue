@@ -1,6 +1,6 @@
 <template>
   <div class="news">
-    news page
+    Weekly News
   </div>
 </template>
 
