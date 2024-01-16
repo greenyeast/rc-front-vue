@@ -11,6 +11,9 @@
     <Card />
     <Pagination/>
   </div>
+<div class="gallery">
+  gallery page!!!
+</div>
 </template>
 
 <script>
@@ -18,9 +21,11 @@ import Card from "@/components/gallery/Card.vue";
 import Pagination from "@/components/gallery/Pagination.vue";
 
 export default {
+
   name: "Gallery",
   components: { Card, Pagination },
 };
+
 </script>
 
 <style scoped>
