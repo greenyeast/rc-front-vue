@@ -24,8 +24,10 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.google.com/noto/specimen/Noto+Sans+KR?preview.text=Residential%20College&query=noto+sans');
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap');
+/* URL for fonts 
+@import url('https://fonts.google.com/noto/specimen/Noto+Sans+KR?preview.text=Residential%20College&query=noto+sans');*/
+/*@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap');
+*/
 
 .gallery {
   background-color: #DBE9F4;
