@@ -1,6 +1,6 @@
 <template>
   <div class="dropdown-wrapper" ref="dropDown">
-    <div class="dropdown-selected-option" @click="isDropDownVisible=true">
+    <div class="dropdown-selected-option" @click="toggleDropDown">
       {{ mappedSelectedOption }}
       <img class="icon-drop" src="@/assets/icon-drop.png">
     </div>
@@ -46,6 +46,9 @@ const mappedSelectedOption = computed(() => {
   return (selectedOption.value?.name || selectedOption.value) ||
       'Week'
 })
+const toggleDropDown = () => {
+  isDropDownVisible.value = !isDropDownVisible.value;
+};
 const toggleOptionSelect = (option) => {
   selectedOption.value = option;
   emit('update:modelValue',option)
@@ -76,12 +79,12 @@ onBeforeUnmount(()=>{
   text-align: center;
 }
 .dropdown-selected-option {
-  padding: 6px;
+  display:flex;
+  gap: 10px;
 }
 .options-wrapper {
-  /* 아래로 고정되도록 스타일 추가 */
   position: absolute;
-  top: 100%; /* dropdown-selected-option 아래로 설정 */
+  top: 100%;
   left: 0;
 }
 
