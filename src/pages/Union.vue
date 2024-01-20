@@ -60,14 +60,14 @@
         </div>
         <div class="form-group">
           <span class="form-head">Location</span>
-          <input type="text" class="form-control" id="floatingLocation" placeholder="Enter your email address" v-model="state.form.location">
+          <input type="text" class="form-control" id="floatingLocation" placeholder="e.g. NTH 310, Auditorium ..." v-model="state.form.location">
         </div>
         <div class="form-group">
           <span class="form-head">Union Program</span>
           <input type="text" class="form-control" id="floatingProgram" placeholder="Football, Indoor games, Outdoor games ..." v-model="state.form.program">
         </div>
         <div class="button-container">
-          <button class="btn btn-lg btn-primary" @click="submit">Submit</button>
+          <button class="btn btn-lg btn-primary" @click.prevent="submit">Submit</button>
         </div>
       </form>
     </div>
@@ -101,6 +101,7 @@
 import { reactive } from 'vue';
 import LogoCard from '../components/union/LogoCard.vue';
 import InfoCard from '../components/union/InfoCard.vue';
+//import axios from "axios";
 
 export default {
   components: {
@@ -143,9 +144,26 @@ export default {
       }
     };
 
-    const submit = () => {
-      console.log('Form submitted:', state.form, submit, selectWeek, rcs, selectRC);
-    };
+    const submit = async () => {
+      if (!state.form.leader || !state.form.professor || !state.form.email || !state.form.week || !state.form.rc || !state.form.location || !state.form.program) {
+        window.alert("Please fill in all required fields before submitting.");
+        return;
+      }
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(state.form.email)) {
+        window.alert("Please enter a valid email address.");
+        return;
+      }
+      try {
+        console.log('Form submitted:', state.form, selectWeek, rcs, selectRC);
+        sessionStorage.setItem('formSubmitted', 'true');
+        window.alert("Form Submitted!");
+      } catch (error) {
+        console.error('Form submission error:', error);
+        window.alert("An error occurred while submitting the form. Please try again later.");
+      }
+    }
+
     const waitingRcs = [
       { id: 1, name: 'Sonyangwon', cardSrc: require('@/assets/logo-card-son.png'), numWaiting: 13 },
       { id: 2, name: 'Jangkiryeo', cardSrc: require('@/assets/logo-card-jang.png'), numWaiting: 12 },
@@ -220,6 +238,7 @@ body {
   background-color: #DBE9F4;
   font-family: 'Open Sans', sans-serif;
   width: 100%;
+  overflow-x: hidden;
 }
 .top {
   align-items: center;
@@ -231,7 +250,7 @@ body {
 }
 .vertical-separator {
   border-bottom: 1px solid #17528580;
-  width: 1215px;
+  width: 85%;
   margin: 0 auto;
 }
 .flex-container {
@@ -248,6 +267,7 @@ body {
   height: 546px;
   padding: 20px 0px 20px 0px;
 }
+
 .union-title {
   font-size: 64px;
   font-weight: 700;

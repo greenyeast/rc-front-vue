@@ -16,7 +16,6 @@
         </div>
       </div>
     </div>
-    <div v-if="isLogoSrcEqual">logoSrc is equal to @/assets/logo-rc-phila.png</div>
   </div>
 </template>
 
@@ -29,16 +28,6 @@ export default {
     waitingCount: Number,
     contactingCount: Number,
     completedCount: Number,
-  },
-  computed: {
-    isLogoSrcEqual() {
-      const isEqual = this.logoSrc === '@/assets/logo-rc-phila.png';
-      if (isEqual) {
-        console.log('logoSrc is equal to @/assets/logo-rc-phila.png');
-      }
-      console.log('logoSrc is not equal to @/assets/logo-rc-phila.png', this.logoSrc);
-      return isEqual;
-    },
   },
 };
 </script>
